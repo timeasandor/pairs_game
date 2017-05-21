@@ -1,0 +1,237 @@
+/* grid values */
+$innerPaddings:			  		5%;
+$innerPaddingsMobile:			5%;
+$content_max_width: 		1124px;
+$block_text_max:			 808px;
+
+/* spacing */
+$inner_block_vertical_padding : 20px;
+$inner_block_horizontal_padding : 6%;
+
+/* breakpoints */
+$for_laptop:				1440px;
+$for_below_laptop:			1359px;
+$for_tablet:				1024px;
+$for_tablet_portrait:		1000px;
+$for_tablet_portrait_bootstrap: 768px;
+$for_mobile:		 		 640px;
+$for_mobile_portrait:		 500px;
+$for_mobile_iphone: 		 380px;
+
+/* colors */
+$colorText: 				#575756;
+$colorHeadings:				#222222;
+$colorBackground:			#ecebeb;
+$colorBrand:				#000066;
+$colorBrandLight:			#b3afa9;
+$colorBrandHover:			#66625a;
+$colorHoverBg:				#8d8d8d;
+$colorGrayInactive:		#c8ccd8;
+$colorGrayActive:		#666666;
+$colorMouseOver:		#333333;
+$colorBreadcrumbs:		#7e7972;
+$colorBgWhite:			#ffffff;
+$colorBlack:			#000000;
+$colorTextBlue:			#010066;
+$colorBorder:			#e6e6e6;
+
+
+
+/* z-index levels */
+$zindex_background:	 	10;
+$zindex_anim_elem:		50;
+$zindex_content:		100;
+$zindex_sticky:			200;
+$zindex_overlay:		300;
+
+/* animation durations */
+$hover_light: 0.2s;
+$hover_medium: 0.6s;
+
+
+/* ================= MIXINS ================= */
+@mixin pseudoElement() {
+	display:block;
+	content: ' ';
+}
+@mixin fontBrand {
+	font-family:Arial,serif;
+}
+@mixin fontNormal {
+	font-family:Arial,sans-serif;
+	font-weight:normal;
+}
+@mixin fontBold {
+	font-family:Arial,sans-serif;
+	font-weight:bold;
+}
+@mixin fontLight {
+	font-family:Arial,sans-serif;
+	font-weight:light;
+}
+@mixin fontArial {
+	font-family:Arial,sans-serif;
+	font-weight:normal;
+}
+@mixin font-smoothing($value: on) {
+	@if $value == on {
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	}
+	@else {
+		-webkit-font-smoothing: subpixel-antialiased;
+		-moz-osx-font-smoothing: auto;
+	}
+}
+
+/* ================= SPRITES ================= */
+
+@mixin sprite($name) {
+	background-image:url('../images/sprite.png');
+	@if $name == arrow_down {
+		background-position:0px 0px;
+	} @else if $name == arrow {
+		background-position:0px -100px;
+	} @else {
+		background-position:0px 0px;
+	}
+}
+
+
+
+
+/* ================= Trigonometric Functions ================= */
+
+
+/// An approximation of π.
+/// @access private
+/// @return {Float}
+/// @link https://github.com/at-import/Sassy-math/blob/master/sass/math.scss#L8 SassyMath
+@function pi() {
+	@return 3.1415926535897932384626433832795028841971693993751;
+}
+
+/// Factorial function.
+/// @access private
+/// @param {Number} $number
+/// @return {Number}
+/// @link https://unindented.org/articles/trigonometry-in-sass/ Trigonometry in Sass
+@function fact($number) {
+	$value: 1;
+
+	@if $number > 0 {
+		@for $i from 1 through $number {
+			$value: $value * $i;
+		}
+	}
+
+	@return $value;
+}
+
+/// Power function.
+/// @access private
+/// @param {Number} $number
+/// @param {Number} $exp
+/// @link https://unindented.org/articles/trigonometry-in-sass/ Trigonometry in Sass
+@function pow($number, $exp) {
+	$value: 1;
+
+	@if $exp > 0 {
+		@for $i from 1 through $exp {
+			$value: $value * $number;
+		}
+	} @else if $exp < 0 {
+		@for $i from 1 through -$exp {
+			$value: $value / $number;
+		}
+	}
+
+	@return $value;
+}
+
+/// Sine function.
+/// @access private
+/// @param {Angle} $angle - Angle expressed in degrees
+/// @return {Number}
+/// @link https://unindented.org/articles/trigonometry-in-sass/ Trigonometry in Sass
+@function sin($angle) {
+	$sin: 0;
+	$rad: $angle * pi() * 1rad / 180deg;
+	$angle: $rad / ($rad * 0 + 1);
+
+	@for $i from 0 through 10 {
+		$sin: $sin + pow(-1, $i) * pow($angle, (2 * $i + 1)) / fact(2 * $i + 1);
+	}
+
+	@return $sin;
+}
+
+/// Square root function.
+/// @access private
+/// @param {Number} $number
+/// @return {Number}
+/// @link https://github.com/at-import/Sassy-math/blob/master/sass/math.scss#L259-L266 SassyMath
+@function sqrt($number) {
+	$guess: 4; // Guaranteed to be random: http://xkcd.com/221/
+	$root: $guess;
+
+	@for $i from 1 through 50 {
+		$root: $root - (pow($root, 2) - $number) / (2 * $root);
+	}
+
+	@return $root;
+}
+
+
+//////-------------Tilted Angles--------------------/////////
+
+@function get-tilted-height($angle) {
+	$a: (100% / 1%);
+	$A: (90deg - $angle);
+	$c: ($a / sin($A));
+	$b: sqrt(pow($c, 2) - pow($a, 2));
+
+	@return (abs($b) * 1%);
+}
+
+//==============Mixin for Tilted Angles================//
+
+@mixin tilted($angle, $color, $position: 'bottom', $pseudo: 'before') {
+	$height: get-tilted-height($angle);
+
+	position: relative;
+	background-color: $color;
+
+	&::#{$pseudo} {
+		content: '';
+		padding-top: $height;
+		position: absolute;
+		left: 0;
+		right: 0;
+		display: block;
+
+		@if ($position == 'top') {
+			bottom: 100%;
+			background-image: linear-gradient($angle, $color 50%, transparent 50%);
+		}
+		@else if ($position == 'top-right') {
+			bottom: 100%;
+			@include transform(rotateX(180deg));
+			background-image: linear-gradient($angle, transparent 50%, $color 50%);
+		}
+		@else if ($position == 'bottom-left'){
+			top: 100%;
+			@include transform(rotateX(180deg));
+			background-image: linear-gradient($angle, $color 50%, transparent 50%);
+		}
+		@else {
+			top: 100%;
+			background-image: linear-gradient($angle, transparent 50%, $color 50%);
+		}
+	}
+}
+
+
+
+
+

@@ -1,0 +1,48 @@
+.page_footer {
+  padding:23px 35px;
+  position:relative;
+  z-index:10;
+  .nav_wrap {
+    float:left;
+    ul {
+      list-style:none;
+      li {
+        position:relative;
+        display:inline-block;
+        padding-right:14px;
+        margin-right:10px;
+        line-height:16px;
+
+        &:after {
+          @include pseudoElement();
+          width:1px;height:16px;
+          background:#666666;
+          position:absolute;
+          top:2px;right:0px;
+        }
+
+        &.last {
+          border-right:0;
+          padding-right:0;
+
+          &:after {
+            display:none;
+          }
+        }
+      }
+      a {
+        font-size:0.8125em;
+        color:#575756;
+        text-decoration:none;
+
+        &:hover {
+          text-decoration:underline;
+        }
+      }
+    }
+  }
+  .logo {
+    float:right;
+    margin:-2px -5px 0 0;
+  }
+}

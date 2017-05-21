@@ -1,0 +1,32 @@
+.grid-col-left {
+	float:left;
+	width:635px;
+	position:relative;
+	padding-right:30px;
+	padding-left:15px;
+
+	height:355px;
+
+	&.large {
+		height:390px;
+	}
+
+	&.border {
+		&:after {
+			@include pseudoElement();
+			position:absolute;
+			top:5px;right:0px;
+			bottom:0px;
+			background: #595959;
+			width:1px;
+		}
+	}
+}
+
+.grid-col-right {
+	padding-top:1px;
+	float:right;
+	width:353px;
+	padding-right:15px;
+	padding-left:30px;
+}

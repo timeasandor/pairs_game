@@ -1,0 +1,77 @@
+.score {
+
+  width: 100%;
+  background-image: url('../images/IMG_0378.jpg');
+  background-size: cover;
+  background-position: center center;
+  @include opacity(0.9);
+  visibility: hidden;
+  display: block;
+  position: absolute;
+  top: 0;
+  height: auto;
+  z-index: 200;
+  min-height: 1000px;
+
+  .wrapper {
+    background-color: #8a6d3b;
+    @include border-radius(10px);
+    border: 2px solid #0d3349;
+    width: 100%;
+    margin: 100px 0;
+
+
+    .inner {
+      margin: 40px;
+    }
+
+    .title {
+      text-align: center;
+      color: #001a30;
+      font: {
+        size: 3em;
+        weight: bold;
+      };
+    }
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+
+      li {
+        color: #ffe7b5;
+        list-style: square;
+        display: block;
+        width: 100%;
+        line-height: 44px;
+        height: 45px;
+        border-bottom: 2px solid #0d3349;
+
+        .name, .time {
+          padding: 5px 20px;
+        }
+
+        span {
+          float: right;
+        }
+      }
+    }
+    .play_again {
+      padding: 15px 40px;
+      background-color: #0d3349;
+      color: #ffc520;
+      font-weight: bold;
+      @include border-radius(5px);
+      box-shadow: none;
+      border: none;
+      margin: 40px auto 0;
+      display: block;
+
+      &:hover {
+        background-color: #0b97c4;
+      }
+    }
+  }
+
+
+}

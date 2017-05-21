@@ -1,0 +1,26 @@
+@charset "UTF-8";
+
+@import 'compass/css3';
+@import "compass/css3/animation";
+
+@import '_setup/_reset';
+@import '_setup/_definitions';
+@import '_setup/_grid';
+
+@import '_vendor/_bootstrap';
+@import '_vendor/_customScrollbar';
+@import '_vendor/_swiper';
+@import '_vendor/_uniform';
+
+@import '_setup/_main';
+@import '_setup/_header';
+@import '_setup/_footer';
+@import '_setup/_buttons';
+@import '_setup/_shapes_svg';
+
+@import '_overlay/_overlay';
+
+@import '_block/_block_game';
+@import '_block/_block_overlay';
+@import '_block/_block_timer';
+@import '_block/_block_score';

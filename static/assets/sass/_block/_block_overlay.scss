@@ -1,0 +1,64 @@
+.overlay {
+  width: 100%;
+  background-position: top center;
+  background-size: cover;
+  visibility: visible;
+  z-index: 1;
+  display: block;
+  position: relative;
+  top: 0;
+  height: 100%;
+  background-image: url('../images/overlay_bg.jpg');
+  background-repeat: no-repeat;
+
+  .wrapper {
+    padding-top: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h2 {
+      font-size: 5em;
+      color: #FFFFFF;
+    }
+    h3 {
+      font-size: 2em;
+      color: #ffffff;
+    }
+    h4 {
+      color: #ffffff;
+    }
+
+    .title {
+      padding-top: 20px;
+    }
+      button {
+        padding: 15px 40px;
+        background-color: #002451;
+        color: #ffc520;
+        font-weight: bold;
+        @include border-radius(5px);
+        box-shadow: none;
+        border: none;
+        font-size: 1.8em;
+    }
+    .register {
+      
+      input {
+        margin: 0 auto;
+        background-color: #ffffff;
+        display: block;
+        border: none;
+        @include border-radius(5px);
+        box-shadow: none;
+        padding: 15px 20px;
+        width: 200px;
+        color: #006;
+        font: {
+          weight: bold;
+          size: 2em;
+        };
+      }
+    }
+  }
+}

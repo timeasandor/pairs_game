@@ -1,0 +1,49 @@
+.page_header {
+  padding:20px 0 0;
+
+  .logo {
+    background:#ffffff;
+    text-align:right;
+    padding:25px 31px 18px 0;
+  }
+
+  .nav_wrap {
+    padding:22px 34px 34px;
+    ul {
+      list-style:none;
+
+      &.al_right {
+        text-align:right;
+        li {
+          margin-left:30px;
+          margin-right:0;
+        }
+      }
+
+      li {
+        display:inline-block;
+        margin-right:30px;
+      }
+    }
+    a {
+      font-size:1em;
+      color:#575756;
+      text-decoration:none;
+
+      &.active {
+        font-weight:bold;
+      }
+    }
+    .lang_switch {
+      position:relative;
+      padding-right:24px;
+      &:after {
+        @include pseudoElement();
+        @include sprite(arrow_down);
+        width:16px;height:9px;
+        position:absolute;
+        top:5px;right:-2px;
+      }
+    }
+  }
+}
